@@ -1,0 +1,12 @@
+# Node and npm ignores
+**/node_modules
+**/package-lock.json
+
+# Env vars 
+**/env.*.json
+
+# Terraform 
+**/builds
+**/terraform.*
+**/.terraform*
+
