@@ -1,7 +1,7 @@
 variable "function_name" {
   type        = string
   description = "Name of sample app function / API gateway"
-  default     = "adot-python-lambdas"
+  default     = "adot-nodejs-lambdas"
 }
 
 variable "elastic_otlp_endpoint" {
