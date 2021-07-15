@@ -2,10 +2,7 @@
 This is a Nodejs client that can be used to invoke the deployed lambdas and start a distributed trace by sending a `traceparent` header to the first API gateway causing the OpenTelemetry agents to report their spans as belonging to this trace.
 
 ## Setup
-This client requires `npm` and `nodejs`. Once these have been installed, run the following to install the required packages:
-```
-npm install
-```
+This client requires `nodejs`. The required JS modules are installed in the node_modules directory, so no additional installs are required.
 The `client.js` script relies on APM server connection parameters that spacified in [deploy/env.auto.tfvars.json](../deploy/env.auto.tfvars.json) file.
 
 ## Invoke
