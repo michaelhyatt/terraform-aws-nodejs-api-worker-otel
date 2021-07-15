@@ -46,9 +46,11 @@ This tutorial explains how to instrument Python lambda functions with the OpenTe
 
 * Deploy your Lambda function, test it and visualize it in Elastic Observability's APM view:
     * Example distributed trace chaining 2 lambda functions and [provided Node.js client](client):
-      
+      ![image](https://user-images.githubusercontent.com/15670925/125717724-3fb69534-aab9-41cd-98e7-f841b5b6df9e.png)
+
 
     * Example of the above trace represented as a service map:
+      ![image](https://user-images.githubusercontent.com/15670925/125717927-4c47590f-e289-411b-a570-f14722adb13c.png)
       
 
 ## Terraform deployment example
