@@ -43,6 +43,7 @@ This tutorial explains how to instrument Python lambda functions with the OpenTe
       * `AWS_LAMBDA_EXEC_WRAPPER="/opt/otel-handler"`.
       * `OTEL_PROPAGATORS="tracecontext"` to override the default setting that also enables X-Ray headers causing interferences between OpenTelemetry and X-Ray.
       * `OPENTELEMETRY_COLLECTOR_CONFIG_FILE="/var/task/opentelemetry-collector.yaml"` to specify the path to your OpenTelemetry Collector configuration.
+      * Note that this example requires the `traceparent` header to be sent to the first lambda with the `sampled` flag set to true. If you are using the provided [client.js](client/client.js) example, it should take care of that.
 
 * Deploy your Lambda function, test it and visualize it in Elastic Observability's APM view:
     * Example distributed trace chaining 2 lambda functions and [provided Node.js client](client):
