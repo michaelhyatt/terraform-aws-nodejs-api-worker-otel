@@ -25,6 +25,9 @@ module "nodejs-producer-lambda-function" {
     ELASTIC_OTLP_TOKEN: var.elastic_otlp_token
     OPENTELEMETRY_COLLECTOR_CONFIG_FILE: "/var/task/opentelemetry-collector.yaml"
     OTEL_PROPAGATORS: "tracecontext"
+
+    # Required setting until this https://github.com/open-telemetry/opentelemetry-js/pull/2331 is merged and released.
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"
   }
 
   tracing_mode = "PassThrough" // ensure xray doesn't modify the trace context. See "api-gateway" enable_xray_tracing below
@@ -55,6 +58,9 @@ module "nodejs-consumer-lambda-function" {
     OPENTELEMETRY_COLLECTOR_CONFIG_FILE: "/var/task/opentelemetry-collector.yaml"
     OTEL_PROPAGATORS: "tracecontext"
     CONSUMER_API: module.producer-api-gateway.api_gateway_url
+
+    # Required setting until this https://github.com/open-telemetry/opentelemetry-js/pull/2331 is merged and released.
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"    
   }
 
   tracing_mode = "PassThrough" // ensure xray doesn't modify the trace context. See "api-gateway" enable_xray_tracing below

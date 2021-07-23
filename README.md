@@ -37,13 +37,14 @@ This tutorial explains how to instrument Python lambda functions with the OpenTe
           exporters: [logging, otlp/elastic]
     ```
 * Configure you AWS Lambda function with:
-   * [Function layer](https://docs.aws.amazon.com/lambda/latest/dg/API_Layer.html): The latest [AWS Lambda layer for OpenTelemetry]https://aws-otel.github.io/docs/getting-started/lambda/lambda-js)  (e.g. `arn:aws:lambda:us-east-1:901920570463:layer:aws-otel-nodejs-ver-0-19-0:1`)
+   * [Function layer](https://docs.aws.amazon.com/lambda/latest/dg/API_Layer.html): The latest [AWS Lambda layer for OpenTelemetry]https://aws-otel.github.io/docs/getting-started/lambda/lambda-js)  (e.g. `arn:aws:lambda:us-east-1:901920570463:layer:aws-otel-nodejs-ver-0-23-0:1`)
    * [TracingConfig / Mode](https://docs.aws.amazon.com/lambda/latest/dg/API_TracingConfig.html) set to `PassTrough`
    * Export the environment variables:
       * `AWS_LAMBDA_EXEC_WRAPPER="/opt/otel-handler"`.
       * `OTEL_PROPAGATORS="tracecontext"` to override the default setting that also enables X-Ray headers causing interferences between OpenTelemetry and X-Ray.
       * `OPENTELEMETRY_COLLECTOR_CONFIG_FILE="/var/task/opentelemetry-collector.yaml"` to specify the path to your OpenTelemetry Collector configuration.
-      * Note that due to [this limitation](https://github.com/aws-observability/aws-otel-lambda/issues/118) for the trace to work it requires the `traceparent` header to be sent to the first lambda with the `sampled` flag set to true. If you are using the provided [client.js](client/client.js) example, it should take care of that.
+      * Note that this environment variable is required to be set until [ pull request](https://github.com/open-telemetry/opentelemetry-js/pull/2331) is merged and released:
+        `OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"`
 
 * Deploy your Lambda function, test it and visualize it in Elastic Observability's APM view:
     * Example distributed trace chaining 2 lambda functions and [provided Node.js client](client):
