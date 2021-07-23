@@ -45,6 +45,8 @@ This tutorial explains how to instrument Python lambda functions with the OpenTe
       * `OPENTELEMETRY_COLLECTOR_CONFIG_FILE="/var/task/opentelemetry-collector.yaml"` to specify the path to your OpenTelemetry Collector configuration.
       * Note that this environment variable is required to be set until [ pull request](https://github.com/open-telemetry/opentelemetry-js/pull/2331) is merged and released:
         `OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"`
+      * Turn on sampling, if `traceparent` header is not sent from the caller. This can potentially create a very large amount of data, so in production set the correct sampling configuration, as per [specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/sdk.md#sampling).
+        `OTEL_TRACES_SAMPLER: "AlwaysOn"`
 
 * Deploy your Lambda function, test it and visualize it in Elastic Observability's APM view:
     * Example distributed trace chaining 2 lambda functions and [provided Node.js client](client):

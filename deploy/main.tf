@@ -28,6 +28,9 @@ module "nodejs-producer-lambda-function" {
 
     # Required setting until this https://github.com/open-telemetry/opentelemetry-js/pull/2331 is merged and released.
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"
+
+    # Turn on sampling, if not sent from the caller. This can potentially create a very large amount of data.
+    OTEL_TRACES_SAMPLER: "AlwaysOn"    
   }
 
   tracing_mode = "PassThrough" // ensure xray doesn't modify the trace context. See "api-gateway" enable_xray_tracing below
@@ -61,6 +64,9 @@ module "nodejs-consumer-lambda-function" {
 
     # Required setting until this https://github.com/open-telemetry/opentelemetry-js/pull/2331 is merged and released.
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"    
+
+    # Turn on sampling, if not sent from the caller. This can potentially create a very large amount of data.
+    OTEL_TRACES_SAMPLER: "AlwaysOn"
   }
 
   tracing_mode = "PassThrough" // ensure xray doesn't modify the trace context. See "api-gateway" enable_xray_tracing below
