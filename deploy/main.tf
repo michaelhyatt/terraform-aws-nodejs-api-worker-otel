@@ -30,7 +30,7 @@ module "nodejs-producer-lambda-function" {
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"
 
     # Turn on sampling, if not sent from the caller. This can potentially create a very large amount of data.
-    OTEL_TRACES_SAMPLER: "AlwaysOn"    
+    OTEL_TRACES_SAMPLER: "Always_On"    
   }
 
   tracing_mode = "PassThrough" // ensure xray doesn't modify the trace context. See "api-gateway" enable_xray_tracing below
@@ -66,7 +66,7 @@ module "nodejs-consumer-lambda-function" {
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"    
 
     # Turn on sampling, if not sent from the caller. This can potentially create a very large amount of data.
-    OTEL_TRACES_SAMPLER: "AlwaysOn"
+    OTEL_TRACES_SAMPLER: "Always_On"
   }
 
   tracing_mode = "PassThrough" // ensure xray doesn't modify the trace context. See "api-gateway" enable_xray_tracing below
