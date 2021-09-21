@@ -60,10 +60,7 @@ module "nodejs-consumer-lambda-function" {
     ELASTIC_OTLP_TOKEN: var.elastic_otlp_token
     OPENTELEMETRY_COLLECTOR_CONFIG_FILE: "/var/task/opentelemetry-collector.yaml"
     OTEL_PROPAGATORS: "tracecontext"
-    CONSUMER_API: module.producer-api-gateway.api_gateway_url
-
-    # Required setting until this https://github.com/open-telemetry/opentelemetry-js/pull/2331 is merged and released.
-    OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:55681/v1/traces"    
+    CONSUMER_API: module.producer-api-gateway.api_gateway_url   
 
     # Turn on sampling, if not sent from the caller. This can potentially create a very large amount of data.
     OTEL_TRACES_SAMPLER: "Always_On"
